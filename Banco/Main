@@ -1,0 +1,9 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    double saldo = 0;
+	    Cadastro cadastro = new Cadastro();
+	    saldo = cadastro.conta();
+	    Trans.transacao(saldo);
+	}
+}
