@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class Trans
+{
+    private double sd;
+    
+    public Trans (double sd) {
+        this.sd = sd;
+    }
+    public double getSd() {
+        return sd;
+    }
+    public void setSd(double sd) {
+        this.sd = sd;
+    }
+    
+    public static void transacao (double sd) {
+        boolean reset = true;
+        double saldo = 0;
+        int op = 0;
+        double temp = 0;
+        Scanner sc = new Scanner(System.in);
+        Trans trans = new Trans(sd);
+        saldo = trans.getSd();
+        System.out.println("Conta bancária criada com sucesso.");
+        System.out.println();
+        while (reset) {
+            System.out.println("Selecione uma das opções abaixo");
+            System.out.println(" 1 - Depositar valor");
+            System.out.println(" 2 - Sacar valor");
+            System.out.println(" 3 - Obter saldo disponível");
+            for (int i = 0; i < 1; i++) {
+                try {
+                    op = sc.nextInt();
+                    if (op < 1 || op > 3) {
+                        System.out.println("Digite um valor entre 1 e 3");
+                        sc.next();
+                        i--;
+                    }
+                } catch(Exception e) {
+                    System.out.println("Digite um valor válido entre 1 e 3");
+                    sc.next();
+                    i--;
+                }
+            }
+            switch (op) {
+                case 1:
+                    System.out.println("Digite o valor que deseja depositar.");
+                    temp = sc.nextDouble();
+                    saldo += temp;
+                    System.out.println("Depósito de R$ " + temp + " realizado com sucesso.");
+                    System.out.println();
+                    temp = 0;
+                    op = 0;
+                    break;
+                case 2:
+                    System.out.println("Digite o valor que deseja sacar.");
+                    temp = sc.nextDouble();
+                    saldo -= temp;
+                    System.out.println("Saque de R$ " + temp + " realizado com sucesso.");
+                    System.out.println();
+                    temp = 0;
+                    op = 0;
+                    break;
+                case 3:
+                    System.out.println("Saldo disponível de R$ " + saldo);
+                    System.out.println();
+                    op = 0;
+                    break;
+            }
+        }
+        sc.close();
+    }
+}
