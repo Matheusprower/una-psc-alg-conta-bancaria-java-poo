@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class Cadastro {
+
+    public static double conta() {
+        String nome;
+        double conta = 0;
+        double saldo = 0;
+        String confirmar;
+        boolean reset = true;
+        Scanner sc = new Scanner(System.in);
+        while (reset) {
+            System.out.println("Digite seu nome");
+            nome = sc.nextLine();
+            System.out.println("Digite o número da sua conta");
+            for (int i = 0;i < 1;i++) {
+                try {
+                    conta = sc.nextDouble();
+                } catch(Exception e) {
+                    System.out.println("Digite um valor válido");
+                    sc.next();
+                    i--;
+                }
+            }
+            System.out.println("Digite o seu valor de saldo inicial");
+            for (int i = 0; i < 1; i++) {
+                try {
+                    saldo = sc.nextDouble();
+                    if (saldo < 0) {
+                        System.out.println("Digite um valor maior que 0");
+                        sc.next();
+                        i--;
+                    }
+                } catch(Exception e) {
+                    System.out.println("Digite um valor válido");
+                    sc.next();
+                    i--;
+                }
+            }
+            System.out.println();
+            System.out.println("Suas informação são: ");
+            System.out.println("Nome: " + nome);
+            System.out.println("Nº da conta: " + conta);
+            System.out.println("Saldo inicial: " + saldo);
+            System.out.println("Está correto? SIM para confirmar e NÃO para negar");
+            confirmar = sc.nextLine();
+            while (!confirmar.equals("SIM") && !confirmar.equals("NÃO")) {
+                System.out.println("Digite uma opção válida");
+                confirmar = sc.nextLine();
+            }
+            if (confirmar.equals("SIM")) {
+                System.out.println();
+                reset = false;
+                return saldo;
+            } else {
+                System.out.println();
+            }
+        }
+        return 0;
+    }
+}
+
